@@ -1,9 +1,0 @@
-name: ColouredPlayerList
-main: me.Ryan6338.ColouredPlayerList.ColouredPlayerList
-version: 0.1
-<<<<<<< HEAD
-commands:
-  refreshtags:
-    description: Refreshes senders player list tag
-=======
->>>>>>> a542e45b1a0767737be834f89d7d25ce56e24a43

@@ -1,3 +1,35 @@
 name: ColouredPlayerList
 main: me.Ryan6338.ColouredPlayerList.ColouredPlayerList
 version: 0.1
+commands:
+  refreshtags:
+    description: Thingy
+permissions:
+  cpl.dark_blue:
+    default: false
+  cpl.dark_green:
+    default: false
+  cpl.dark_aqua:
+    default: false
+  cpl.dark_red:
+    default: false
+  cpl.dark_purple:
+    default: false
+  cpl.gold:
+    default: false
+  cpl.gray:
+    default: false
+  cpl.dark_gray:
+    default: false
+  cpl.blue:
+    default: false
+  cpl.green:
+    default: false
+  cpl.aqua:
+    default: false
+  cpl.red:
+    default: false
+  cpl.purple:
+    default: false
+  cpl.yellow:
+    default: false

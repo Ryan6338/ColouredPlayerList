@@ -26,7 +26,7 @@ public class PermsLookup {
 		} else if (p.hasPermission("cpl.dark_gray")) {
 			c = ChatColor.DARK_GRAY;
 		} else if (p.hasPermission("cpl.blue")) {
-			c = ChatColor.DARK_BLUE;
+			c = ChatColor.BLUE;
 		} else if (p.hasPermission("cpl.green")) {
 			c = ChatColor.GREEN;
 		} else if (p.hasPermission("cpl.aqua")) {
@@ -43,8 +43,8 @@ public class PermsLookup {
 			c = ChatColor.YELLOW;
 		}
 		String pname = p.getDisplayName();
-		if(p.getName().length() > 14) {
-			pname = p.getDisplayName().substring(0, 13);
+		if(p.getDisplayName().length() > 14) {
+			pname = p.getDisplayName().substring(0, 14);
 		}
 		p.setPlayerListName(c + pname);
 	}
