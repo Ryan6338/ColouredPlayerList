@@ -7,9 +7,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
 	public PlayerListener listener;
-	public PermsLookup perms;
+	PermsLookup perms = new PermsLookup();
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
 		perms.colour(event.getPlayer());
 	}

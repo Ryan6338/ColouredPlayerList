@@ -9,7 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ColouredPlayerList extends JavaPlugin {
 	public final Logger logger = Logger.getLogger("Minecraft");
 	public static ColouredPlayerList plugin;
-	public PermsLookup perms = null;
 	public PlayerListener listener;
 
 	@Override

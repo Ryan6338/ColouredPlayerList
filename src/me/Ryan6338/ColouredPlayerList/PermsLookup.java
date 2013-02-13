@@ -2,9 +2,8 @@ package me.Ryan6338.ColouredPlayerList;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
-public class PermsLookup extends JavaPlugin {
+public class PermsLookup {
 	public PermsLookup perms;
 
 	public void colour(Player p) {
@@ -47,6 +46,6 @@ public class PermsLookup extends JavaPlugin {
 		if(p.getName().length() > 14) {
 			pname = p.getDisplayName().substring(0, 13);
 		}
-		p.setDisplayName(c + pname);
+		p.setPlayerListName(c + pname);
 	}
 }
