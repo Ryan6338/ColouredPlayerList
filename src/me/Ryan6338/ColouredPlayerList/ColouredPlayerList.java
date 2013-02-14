@@ -8,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class ColouredPlayerList extends JavaPlugin {
 	public final Logger logger = Logger.getLogger("Minecraft");
-	public static ColouredPlayerList plugin;
+	public ColouredPlayerList plugin;
 	public PlayerListener listener;
 
 	@Override
