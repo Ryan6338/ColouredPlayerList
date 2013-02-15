@@ -5,12 +5,16 @@ import org.bukkit.entity.Player;
 
 public class PermsLookup {
 	public PermsLookup perms;
-	ColouredPlayerList cpl = new ColouredPlayerList();
+	private ColouredPlayerList plugin;
 	Player player;
 	
+	public PermsLookup(ColouredPlayerList plugin) {
+		this.plugin = plugin;
+	}
+	
 	public void colour(final Player p) {
-		cpl.getServer().getScheduler()
-				.scheduleSyncDelayedTask(cpl, new Runnable() {
+		plugin.getServer().getScheduler()
+				.scheduleSyncDelayedTask(plugin, new Runnable() {
 					@Override
 					public void run() {
 						ChatColor c;
