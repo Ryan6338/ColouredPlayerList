@@ -6,16 +6,14 @@ import org.bukkit.entity.Player;
 public class PermsLookup {
 	public PermsLookup perms;
 	private ColouredPlayerList plugin;
-	Player player;
-	
-	public PermsLookup(ColouredPlayerList plugin) {
-		this.plugin = plugin;
+
+	public PermsLookup(ColouredPlayerList instance) {
+		plugin = instance;
 	}
-	
+
 	public void colour(final Player p) {
 		plugin.getServer().getScheduler()
 				.scheduleSyncDelayedTask(plugin, new Runnable() {
-					@Override
 					public void run() {
 						ChatColor c;
 						c = ChatColor.WHITE;
@@ -54,7 +52,8 @@ public class PermsLookup {
 						}
 						String pname = ChatColor.RESET + p.getDisplayName();
 						if (p.getDisplayName().length() > 14) {
-							pname = ChatColor.RESET + p.getDisplayName().substring(0, 14);
+							pname = ChatColor.RESET
+									+ p.getDisplayName().substring(0, 14);
 						}
 						p.setPlayerListName(c + pname);
 					}

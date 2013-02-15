@@ -1,9 +1,6 @@
 name: ColouredPlayerList
 main: me.Ryan6338.ColouredPlayerList.ColouredPlayerList
 version: 0.1
-commands:
-  refreshtags:
-    description: Thingy
 permissions:
   cpl.dark_blue:
     default: false
