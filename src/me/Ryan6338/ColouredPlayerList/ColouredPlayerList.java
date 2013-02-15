@@ -6,11 +6,10 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ColouredPlayerList extends JavaPlugin {
+public final class ColouredPlayerList extends JavaPlugin {
 	public final Logger logger = Logger.getLogger("Minecraft");
 	public ColouredPlayerList plugin;
 	public PlayerListener listener;
-	PermsLookup perms = new PermsLookup(plugin);
 
 	@Override
 	public void onDisable() {
