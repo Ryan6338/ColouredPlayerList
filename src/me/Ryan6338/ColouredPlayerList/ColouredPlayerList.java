@@ -108,6 +108,8 @@ public final class ColouredPlayerList extends JavaPlugin {
 				} else {
 					p.sendMessage(ChatColor.RED + "Insufficient Permission!");
 				}
+			} else {
+				p.sendMessage("/cpl reload");
 			}
 		}
 		return false;
