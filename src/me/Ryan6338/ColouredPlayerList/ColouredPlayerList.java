@@ -29,6 +29,7 @@ public final class ColouredPlayerList extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		this.saveDefaultConfig();
+		RefreshAll();
 		PluginManager pm = this.getServer().getPluginManager();
 		
 		//Registers events in the PlayerListener class
@@ -55,11 +56,11 @@ public final class ColouredPlayerList extends JavaPlugin {
 		
 		if (this.getConfig().getBoolean("Add Dots") == true) {
 			if (pname.length() > 12) {
-				pname = pname.substring(0, 13) + "..";
+				pname = pname.substring(0, 12) + "..";
 			}
 		} else {
 			if (pname.length() > 14) {
-				pname = pname.substring(0, 15);
+				pname = pname.substring(0, 14);
 			}
 		}
 		p.setPlayerListName(c + pname);
@@ -100,6 +101,7 @@ public final class ColouredPlayerList extends JavaPlugin {
 		if (commandLabel.equalsIgnoreCase("cpl")) {
 			if(args[0].equalsIgnoreCase("reload")) {
 				if(p.hasPermission("cpl.reload")) {
+					this.reloadConfig();
 					RefreshAll();
 					p.sendMessage(ChatColor.GRAY + "[Coloured Player List] " +
 							ChatColor.GREEN + "Reloaded!");
