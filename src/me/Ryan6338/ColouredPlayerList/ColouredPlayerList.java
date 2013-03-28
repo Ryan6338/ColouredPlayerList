@@ -1,5 +1,6 @@
 package me.Ryan6338.ColouredPlayerList;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.bukkit.ChatColor;
@@ -27,6 +28,7 @@ public final class ColouredPlayerList extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		this.saveDefaultConfig();
 		PluginManager pm = this.getServer().getPluginManager();
 		
 		//Registers events in the PlayerListener class
@@ -51,8 +53,14 @@ public final class ColouredPlayerList extends JavaPlugin {
 		
 		//Checks to see if the nickname is too long
 		
-		if (pname.length() > 12) {
-			pname = pname.substring(1, 13) + "..";
+		if (this.getConfig().getBoolean("Add Dots") == true) {
+			if (pname.length() > 12) {
+				pname = pname.substring(0, 13) + "..";
+			}
+		} else {
+			if (pname.length() > 14) {
+				pname = pname.substring(0, 15);
+			}
 		}
 		p.setPlayerListName(c + pname);
 	}
@@ -76,10 +84,29 @@ public final class ColouredPlayerList extends JavaPlugin {
 		}
 	}
 	
+	public void CommandCheck(String cmd) {
+		List<?> nicks = this.getConfig().getList("Nick Commands");
+		for (int i = 0; i < nicks.size(); i++) {
+			String nick = nicks.get(i).toString().toLowerCase();
+			if(cmd.toLowerCase().startsWith("/" + nick)) {
+				RefreshAll();
+			}
+		}
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd,
-			String commandLabel, String[] args) {
-		if (commandLabel.startsWith("nick")) {
-			RefreshAll();
+			String commandLabel, String[] args){
+		Player p = (Player) sender;
+		if (commandLabel.equalsIgnoreCase("cpl")) {
+			if(args[0].equalsIgnoreCase("reload")) {
+				if(p.hasPermission("cpl.reload")) {
+					RefreshAll();
+					p.sendMessage(ChatColor.GRAY + "[Coloured Player List] " +
+							ChatColor.GREEN + "Reloaded!");
+				} else {
+					p.sendMessage(ChatColor.RED + "Insufficient Permission!");
+				}
+			}
 		}
 		return false;
 	}
