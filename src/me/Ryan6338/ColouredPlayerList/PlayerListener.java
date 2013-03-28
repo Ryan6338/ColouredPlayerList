@@ -18,24 +18,12 @@ public class PlayerListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
-		final Player p = event.getPlayer();
+		Player p = event.getPlayer();
 		
-		final ChatColor c = plugin.getPermissions().getColour(p);
-
+		ChatColor c = plugin.getPermissions().getColour(p);
+		
 		//Delays the task to check for the player display name to give display names time to load
 		
-		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-			public void run() {
-				String pname = p.getDisplayName();
-				
-				//Checks to see if the nickname is too long
-				
-				if (p.getDisplayName().length() > 14) {
-					pname = p.getDisplayName().substring(0, 14);
-				}
-				plugin.Log("Player name: " + pname);
-				p.setPlayerListName(c + pname);
-			}
-		}, 2L);
+		plugin.Delay(p, c);
 	}
 }
