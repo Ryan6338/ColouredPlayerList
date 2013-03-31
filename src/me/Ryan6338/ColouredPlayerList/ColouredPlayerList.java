@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.kitteh.tag.TagAPI;
 
 public final class ColouredPlayerList extends JavaPlugin {
 	public final Logger logger = Logger.getLogger("Minecraft");
@@ -35,6 +36,16 @@ public final class ColouredPlayerList extends JavaPlugin {
 		//Registers events in the PlayerListener class
 		
 		pm.registerEvents(new PlayerListener(this), this);
+		if(this.getConfig().getBoolean("Coloured Name Tags")) {
+	        if (pm.isPluginEnabled("TagAPI")) {
+	            pm.registerEvents(new TagAPIListener(this), this);
+	        } else {
+	        	Log ("You have 'Coloured Tags' enabled");
+	        	Log ("but you do not have TagAPI visit");
+	        	Log ("http://dev.bukkit.org/server-mods/tag");
+	        	Log ("to download it!");
+	        }
+		}
 	}
 	
 	//Allows Permissions to have an instance of ColouredPlayerList
@@ -63,6 +74,7 @@ public final class ColouredPlayerList extends JavaPlugin {
 				pname = pname.substring(0, 14);
 			}
 		}
+		TagAPI.refreshPlayer(p);
 		p.setPlayerListName(c + pname);
 	}
 	
@@ -78,11 +90,19 @@ public final class ColouredPlayerList extends JavaPlugin {
 	}
 	
 	public void RefreshAll() {
-		Player[] po = getServer().getOnlinePlayers();
-		for (int x = 0; x < po.length; x++) {
-			ChatColor c = getPermissions().getColour(po[x]);
-			Delay(po[x], c);
-		}
+		final Player[] po = getServer().getOnlinePlayers();
+		getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+			@Override
+			public void run() {
+				for (int x = 0; x < po.length; x++) {
+					ChatColor c = getPermissions().getColour(po[x]);
+					if(c != null) {
+						TagAPI.refreshPlayer(po[x]);
+						setName(po[x], c);
+					}
+				}
+			}
+		}, 2L);
 	}
 	
 	public void CommandCheck(String cmd) {
@@ -97,10 +117,11 @@ public final class ColouredPlayerList extends JavaPlugin {
 	
 	public boolean onCommand(CommandSender sender, Command cmd,
 			String commandLabel, String[] args){
-		Player p = (Player) sender;
+		CommandSender p = sender;
 		if (commandLabel.equalsIgnoreCase("cpl")) {
 			if(args[0].equalsIgnoreCase("reload")) {
 				if(p.hasPermission("cpl.reload")) {
+					this.saveDefaultConfig();
 					this.reloadConfig();
 					RefreshAll();
 					p.sendMessage(ChatColor.GRAY + "[Coloured Player List] " +
@@ -113,5 +134,9 @@ public final class ColouredPlayerList extends JavaPlugin {
 			}
 		}
 		return false;
+	}
+	
+	public boolean Dots() {
+		return (this.getConfig().getBoolean("Add Dots"));
 	}
 }

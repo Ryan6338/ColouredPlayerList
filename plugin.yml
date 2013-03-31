@@ -35,5 +35,9 @@ permissions:
     default: false
   cpl.yellow:
     default: false
-  cpl.refresh:
+  cpl.white:
+    default: false
+  cpl.reload:
     default: op
+
+softdepend: [TagAPI]
