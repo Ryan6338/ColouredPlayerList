@@ -12,7 +12,6 @@ public final class ColouredPlayerList extends JavaPlugin {
 	public Logger logger = Logger.getLogger("Minecraft");
 	public PlayerListener listener;
 	public PermsLookup perms = new PermsLookup(this);
-	public int interval = getConfig().getInt("Update Interval");
 
 	//Performs on Disable
 	
@@ -69,6 +68,7 @@ public final class ColouredPlayerList extends JavaPlugin {
 	}
 	
 	public void NameLoop() {
+		int interval = getConfig().getInt("Update Interval");
 		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
