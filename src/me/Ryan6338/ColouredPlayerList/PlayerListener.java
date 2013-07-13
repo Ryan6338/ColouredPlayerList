@@ -1,10 +1,8 @@
 package me.Ryan6338.ColouredPlayerList;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
@@ -21,15 +19,8 @@ public class PlayerListener implements Listener {
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
 		
-		ChatColor c = plugin.getPermissions().getColour(p);
-		
 		//Delays the task to check for the player display name to give display names time to load
 		
-		plugin.Delay(p, c);
-	}
-	
-	@EventHandler
-	public void onCommand(PlayerCommandPreprocessEvent event) {
-		plugin.CommandCheck(event.getMessage());
+		plugin.Delay(p);
 	}
 }

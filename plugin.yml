@@ -1,10 +1,6 @@
 name: ColouredPlayerList
 main: me.Ryan6338.ColouredPlayerList.ColouredPlayerList
 version: 1.0
-commands:
-  cpl:
-    description:
-      - /cpl reload
 
 permissions:
   cpl.dark_blue:
@@ -37,7 +33,3 @@ permissions:
     default: false
   cpl.white:
     default: false
-  cpl.reload:
-    default: op
-
-softdepend: [TagAPI]

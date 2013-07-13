@@ -8,15 +8,6 @@
 # (cuts name 4 characters shorter instead of 2 characters shorter)
 Add Dots: true
 
-# This enables the tags above people's heads to have the same
-# colour as their list name but to enable this feature you must 
-# have the TagAPI plugin. Download it from:
-# http://dev.bukkit.org/server-mods/tag
-# NOTE: This only works with players that have names that are
-# 14 characters or less
-Coloured Name Tags: False
-
-# A list of commands that the player list updates on
-Nick Commands:
-  - nick
-  - enick
+# Amount of server ticks it will take for the list to refresh
+# (there is 20 ticks in a second)
+Update Interval: 20
